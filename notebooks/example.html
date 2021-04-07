@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 500px;
+            height: 500px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": "LITTLE, ABNER", "label": "LITTLE, ABNER", "shape": "dot", "size": 10}, {"id": "PRINCESS ZANDA", "label": "PRINCESS ZANDA", "shape": "dot", "size": 10}, {"id": "BLACK PANTHER/T\u0027CHAL", "label": "BLACK PANTHER/T\u0027CHAL", "shape": "dot", "size": 10}, {"id": "CARNIVORE/COUNT ANDR", "label": "CARNIVORE/COUNT ANDR", "shape": "dot", "size": 10}, {"id": "STEELE, SIMON/WOLFGA", "label": "STEELE, SIMON/WOLFGA", "shape": "dot", "size": 10}, {"id": "FORTUNE, DOMINIC", "label": "FORTUNE, DOMINIC", "shape": "dot", "size": 10}, {"id": "ERWIN, CLYTEMNESTRA", "label": "ERWIN, CLYTEMNESTRA", "shape": "dot", "size": 10}, {"id": "IRON MAN/TONY STARK ", "label": "IRON MAN/TONY STARK ", "shape": "dot", "size": 10}, {"id": "IRON MAN IV/JAMES R.", "label": "IRON MAN IV/JAMES R.", "shape": "dot", "size": 10}, {"id": "RAVEN, SABBATH II/EL", "label": "RAVEN, SABBATH II/EL", "shape": "dot", "size": 10}, {"id": "GHOST", "label": "GHOST", "shape": "dot", "size": 10}, {"id": "ZIMMER, ABE", "label": "ZIMMER, ABE", "shape": "dot", "size": 10}, {"id": "FU MANCHU", "label": "FU MANCHU", "shape": "dot", "size": 10}, {"id": "TARR, BLACK JACK", "label": "TARR, BLACK JACK", "shape": "dot", "size": 10}, {"id": "SMITH, SIR DENIS NAY", "label": "SMITH, SIR DENIS NAY", "shape": "dot", "size": 10}, {"id": "SHANG-CHI", "label": "SHANG-CHI", "shape": "dot", "size": 10}, {"id": "MAN-THING/THEODORE T", "label": "MAN-THING/THEODORE T", "shape": "dot", "size": 10}, {"id": "WU, LEIKO", "label": "WU, LEIKO", "shape": "dot", "size": 10}, {"id": "JACKSON, STEVE", "label": "JACKSON, STEVE", "shape": "dot", "size": 10}, {"id": "RESTON, CLIVE", "label": "RESTON, CLIVE", "shape": "dot", "size": 10}, {"id": "ROM, SPACEKNIGHT", "label": "ROM, SPACEKNIGHT", "shape": "dot", "size": 10}, {"id": "DOCTOR DREDD", "label": "DOCTOR DREDD", "shape": "dot", "size": 10}, {"id": "STARSHINE II/BRANDY ", "label": "STARSHINE II/BRANDY ", "shape": "dot", "size": 10}]);
+        edges = new vis.DataSet([{"from": "LITTLE, ABNER", "to": "PRINCESS ZANDA", "weight": 1}, {"from": "LITTLE, ABNER", "to": "BLACK PANTHER/T\u0027CHAL", "weight": 1}, {"from": "LITTLE, ABNER", "to": "CARNIVORE/COUNT ANDR", "weight": 1}, {"from": "PRINCESS ZANDA", "to": "BLACK PANTHER/T\u0027CHAL", "weight": 1}, {"from": "PRINCESS ZANDA", "to": "CARNIVORE/COUNT ANDR", "weight": 1}, {"from": "BLACK PANTHER/T\u0027CHAL", "to": "CARNIVORE/COUNT ANDR", "weight": 1}, {"from": "STEELE, SIMON/WOLFGA", "to": "FORTUNE, DOMINIC", "weight": 1}, {"from": "STEELE, SIMON/WOLFGA", "to": "ERWIN, CLYTEMNESTRA", "weight": 1}, {"from": "STEELE, SIMON/WOLFGA", "to": "IRON MAN/TONY STARK ", "weight": 1}, {"from": "STEELE, SIMON/WOLFGA", "to": "IRON MAN IV/JAMES R.", "weight": 1}, {"from": "STEELE, SIMON/WOLFGA", "to": "RAVEN, SABBATH II/EL", "weight": 1}, {"from": "FORTUNE, DOMINIC", "to": "RAVEN, SABBATH II/EL", "weight": 1}, {"from": "FORTUNE, DOMINIC", "to": "IRON MAN IV/JAMES R.", "weight": 1}, {"from": "FORTUNE, DOMINIC", "to": "IRON MAN/TONY STARK ", "weight": 1}, {"from": "FORTUNE, DOMINIC", "to": "ERWIN, CLYTEMNESTRA", "weight": 1}, {"from": "ERWIN, CLYTEMNESTRA", "to": "RAVEN, SABBATH II/EL", "weight": 1}, {"from": "ERWIN, CLYTEMNESTRA", "to": "IRON MAN IV/JAMES R.", "weight": 1}, {"from": "ERWIN, CLYTEMNESTRA", "to": "IRON MAN/TONY STARK ", "weight": 1}, {"from": "IRON MAN/TONY STARK ", "to": "RAVEN, SABBATH II/EL", "weight": 1}, {"from": "IRON MAN/TONY STARK ", "to": "IRON MAN IV/JAMES R.", "weight": 1}, {"from": "IRON MAN/TONY STARK ", "to": "GHOST", "weight": 1}, {"from": "IRON MAN/TONY STARK ", "to": "ZIMMER, ABE", "weight": 1}, {"from": "IRON MAN IV/JAMES R.", "to": "RAVEN, SABBATH II/EL", "weight": 1}, {"from": "IRON MAN IV/JAMES R.", "to": "GHOST", "weight": 1}, {"from": "IRON MAN IV/JAMES R.", "to": "ZIMMER, ABE", "weight": 1}, {"from": "GHOST", "to": "ZIMMER, ABE", "weight": 1}, {"from": "FU MANCHU", "to": "TARR, BLACK JACK", "weight": 1}, {"from": "FU MANCHU", "to": "SMITH, SIR DENIS NAY", "weight": 1}, {"from": "FU MANCHU", "to": "SHANG-CHI", "weight": 1}, {"from": "FU MANCHU", "to": "MAN-THING/THEODORE T", "weight": 1}, {"from": "TARR, BLACK JACK", "to": "SHANG-CHI", "weight": 1}, {"from": "TARR, BLACK JACK", "to": "SMITH, SIR DENIS NAY", "weight": 1}, {"from": "TARR, BLACK JACK", "to": "MAN-THING/THEODORE T", "weight": 1}, {"from": "TARR, BLACK JACK", "to": "WU, LEIKO", "weight": 1}, {"from": "TARR, BLACK JACK", "to": "JACKSON, STEVE", "weight": 1}, {"from": "TARR, BLACK JACK", "to": "RESTON, CLIVE", "weight": 1}, {"from": "TARR, BLACK JACK", "to": "ROM, SPACEKNIGHT", "weight": 1}, {"from": "SMITH, SIR DENIS NAY", "to": "SHANG-CHI", "weight": 1}, {"from": "SMITH, SIR DENIS NAY", "to": "MAN-THING/THEODORE T", "weight": 1}, {"from": "SMITH, SIR DENIS NAY", "to": "WU, LEIKO", "weight": 1}, {"from": "SMITH, SIR DENIS NAY", "to": "JACKSON, STEVE", "weight": 1}, {"from": "SMITH, SIR DENIS NAY", "to": "DOCTOR DREDD", "weight": 1}, {"from": "SMITH, SIR DENIS NAY", "to": "STARSHINE II/BRANDY ", "weight": 1}, {"from": "SMITH, SIR DENIS NAY", "to": "ROM, SPACEKNIGHT", "weight": 1}, {"from": "SMITH, SIR DENIS NAY", "to": "RESTON, CLIVE", "weight": 1}, {"from": "SHANG-CHI", "to": "MAN-THING/THEODORE T", "weight": 1}, {"from": "SHANG-CHI", "to": "WU, LEIKO", "weight": 1}, {"from": "SHANG-CHI", "to": "JACKSON, STEVE", "weight": 1}, {"from": "SHANG-CHI", "to": "RESTON, CLIVE", "weight": 1}, {"from": "STARSHINE II/BRANDY ", "to": "ROM, SPACEKNIGHT", "weight": 1}, {"from": "STARSHINE II/BRANDY ", "to": "WU, LEIKO", "weight": 1}, {"from": "STARSHINE II/BRANDY ", "to": "JACKSON, STEVE", "weight": 1}, {"from": "STARSHINE II/BRANDY ", "to": "RESTON, CLIVE", "weight": 1}, {"from": "ROM, SPACEKNIGHT", "to": "WU, LEIKO", "weight": 1}, {"from": "ROM, SPACEKNIGHT", "to": "JACKSON, STEVE", "weight": 1}, {"from": "ROM, SPACEKNIGHT", "to": "RESTON, CLIVE", "weight": 1}, {"from": "ROM, SPACEKNIGHT", "to": "DOCTOR DREDD", "weight": 1}, {"from": "WU, LEIKO", "to": "DOCTOR DREDD", "weight": 1}, {"from": "WU, LEIKO", "to": "RESTON, CLIVE", "weight": 1}, {"from": "WU, LEIKO", "to": "JACKSON, STEVE", "weight": 1}, {"from": "DOCTOR DREDD", "to": "JACKSON, STEVE", "weight": 1}, {"from": "DOCTOR DREDD", "to": "RESTON, CLIVE", "weight": 1}, {"from": "RESTON, CLIVE", "to": "JACKSON, STEVE", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
