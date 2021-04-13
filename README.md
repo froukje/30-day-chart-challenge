@@ -15,3 +15,4 @@
 12. strips
 13. correlation
 14. space
+15. multivariate
