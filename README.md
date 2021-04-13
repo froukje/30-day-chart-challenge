@@ -12,3 +12,5 @@
 9. statistics
 10. abstract
 11. circular
+12. strips
+13. correlation
