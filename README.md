@@ -19,3 +19,5 @@
 16. trees
 17. pop culture
 18. connections
+19. global change
+20. upwards
