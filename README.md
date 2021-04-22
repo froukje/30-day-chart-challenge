@@ -21,3 +21,7 @@
 18. connections
 19. global change
 20. upwards
+21. downwards
+22. animation
+23. tiles
+24. monochrome
