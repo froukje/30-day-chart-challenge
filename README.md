@@ -25,3 +25,5 @@
 22. animation
 23. tiles
 24. monochrome
+25. demographic
+26. trends
