@@ -27,3 +27,4 @@
 24. monochrome
 25. demographic
 26. trends
+27. educational
